@@ -1,18 +1,14 @@
 const express = require('express')
 const app = express()
+const cors = require("cors");
+
 const pokemon = require('./pokedex.json')
+const { getTypes, getPokemonByType } = require('./helpers')
 
-
-//filter pokemon by selected type
-function getPokemonByType(pokemon, type) {
-  
-  return  pokemon.filter((el) => 
-    el.type.includes(type))
-}
-
+app.use(cors());
 
 app.get('/', (req, res) => {
-  res.send(`let's catch some pokemon!`)
+  res.json(getTypes(pokemon))
 })
 
 app.get('/grass', (req, res) => {
@@ -21,6 +17,6 @@ app.get('/grass', (req, res) => {
   res.send(grass)
 })
 
-app.listen(3000, () => {
+app.listen(9000, () => {
   console.log(`listening....`)
 })
