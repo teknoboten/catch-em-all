@@ -14,7 +14,7 @@ function App() {
 
   return (
     <div>
-      <h1>Here is a list of Pokemon Types</h1>
+      <h1>Pick Em!</h1>
       {/* {types.map((p) => (
         <span key={p}> {p} </span>
       ))} */}
