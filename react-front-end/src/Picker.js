@@ -13,12 +13,13 @@ export default function Picker({ types }) {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:9000/${picked}`)
+      .get(`http://localhost:9000/api?type=${picked}`)
       .then((res) => setPokemon(res.data))
   }, [picked])
 
   const handleChange = (event) => {
-    console.log('geting some pokemon details')
+    console.log('changed!')
+    console.log('picked:', picked)
     setPicked(event.target.value)
   }
 

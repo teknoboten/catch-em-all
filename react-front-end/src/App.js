@@ -4,25 +4,19 @@ import axios from 'axios'
 import Picker from './Picker'
 
 function App() {
-  const [ types, setTypes ] = useState([])
+  const [types, setTypes] = useState([])
 
   useEffect(() => {
-      axios.get('http://localhost:9000')
-      .then((res) => setTypes(res.data))
+    axios.get('http://localhost:9000').then((res) => setTypes(res.data))
   }, [])
-
 
   return (
     <div>
       <h1>Pick Em!</h1>
-      {/* {types.map((p) => (
-        <span key={p}> {p} </span>
-      ))} */}
 
       <Picker types={types} />
-
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
