@@ -1,6 +1,4 @@
-## NAME      PATH       VERB      PURPOSE
-index        /          GET      Display all types
-grass        /grass     GET      Display grass types
-poison       /poison    GET      Display poison
-...etc
-type       /:type
+## NAME PATH VERB PURPOSE
+
+index / GET Display all types
+type /:type? GET Recieve a type via query string and return selected type

@@ -2,25 +2,21 @@ const express = require('express')
 const app = express()
 const cors = require('cors')
 
-const pokemon = require('./public/pokedex.json')
 const { getTypes, getPokemonByType } = require('./helpers')
 
 app.use(cors())
 app.use(express.static('public'))
 
-app.get('/', (req, res) => {
-  res.json(getTypes(pokemon))
-  // res.json(pokemon)
+app.get('/api/:type?', (req, res) => {
+  const type = req.query.type
+  const results = getPokemonByType(type)
+  res.json(results)
 })
 
-app.get('/grass', (req, res) => {
-  const grass = getPokemonByType(pokemon, 'Grass')
-
-  console.log(grass.splice(0, 3))
-
-  res.send(grass)
+app.get('/', (req, res) => {
+  res.json(getTypes())
 })
 
 app.listen(9000, () => {
-  console.log(`listening....`)
+  console.log(`Let's catch some Pokemon! 😸 `)
 })

@@ -1,19 +1,13 @@
-// const pokemon = require('./pokedex.json')
+const pokemon = require('./pokedex.json')
 
-// function getPokemonByType(pokemon, type) {
-
-//   return  pokemon.filter((el) =>
-//     el.type.includes(type))
-// }
-
-function getPokemonByType(arr, type) {
-  return arr.filter((el) => el.type.includes(type))
+function getPokemonByType(type) {
+  return pokemon.filter((el) => el.type.includes(type))
 }
 
-const getTypes = (arr) => {
+const getTypes = () => {
   const types = []
 
-  for (let p of arr) {
+  for (let p of pokemon) {
     if (!types.includes(p.type[0])) {
       types.push(p.type[0])
     }
