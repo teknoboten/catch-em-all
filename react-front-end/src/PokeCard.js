@@ -1,14 +1,9 @@
+import { getThumbs } from './helpers.js'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 import Typography from '@mui/material/Typography'
 import CardMedia from '@mui/material/CardMedia'
 import Box from '@mui/material/Box'
-
-const getThumbs = (id) => {
-  return id < 100
-    ? `http://localhost:9000/images/0${id}.png`
-    : `http://localhost:9000/images/${id}.png`
-}
 
 export default function PokeCard({ pokemon }) {
   const pokeName = { ...pokemon.name }
@@ -20,7 +15,6 @@ export default function PokeCard({ pokemon }) {
       <CardContent>
         <CardMedia
           component="img"
-          // image={`http://localhost:9000/images/0${pokemon.id}.png`}
           image={getThumbs(pokemon.id)}
           alt={pokeName.english}
           sx={{ width: '60%', mx: 'auto' }}
