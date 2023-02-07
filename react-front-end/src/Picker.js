@@ -1,10 +1,9 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import Box from '@mui/material/Box'
-import InputLabel from '@mui/material/InputLabel'
 import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
-import { Select } from '@mui/material'
+import Select from '@mui/material/Select'
 import PokeDex from './PokeDex'
 
 export default function Picker({ types }) {
@@ -18,22 +17,13 @@ export default function Picker({ types }) {
   }, [picked])
 
   const handleChange = (event) => {
-    console.log('changed!')
-    console.log('picked:', picked)
     setPicked(event.target.value)
   }
 
   return (
     <Box align="center" sx={{ width: '80vw', mx: 'auto' }}>
-      <FormControl fullWidth>
-        <InputLabel id="pokepicker-label">Pick One</InputLabel>
-        <Select
-          labelId="pokepicker-label"
-          id="pokepicker"
-          value={picked}
-          label="picked"
-          onChange={handleChange}
-        >
+      <FormControl sx={{ width: '50vw' }}>
+        <Select value={picked} onChange={handleChange}>
           {types.map((p) => (
             <MenuItem key={p} value={p}>
               {' '}
