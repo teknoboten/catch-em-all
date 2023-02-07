@@ -17,13 +17,18 @@ export default function PokeCard({ pokemon }) {
   const pokeName = { ...pokemon.name }
   const types = pokemon.type
   const { HP, Attack, Defense, Speed } = { ...pokemon.base }
-  console.log(types)
 
   return (
     <Item>
-      <Typography variant="h5" component="div">
+      {types.map((t) => {
+        return <span key={t}>{t} </span>
+      })}
+
+      <Typography variant="h6" sx={{ my: 1 }}>
         {pokeName.english}
       </Typography>
+
+      <Typography variant="body2">{HP}</Typography>
     </Item>
   )
 }
