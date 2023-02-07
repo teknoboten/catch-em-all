@@ -1,17 +1,7 @@
-import { styled } from '@mui/material/styles'
-import Paper from '@mui/material/Paper'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
-import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
-
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-  ...theme.typography.body2,
-  padding: theme.spacing(2),
-  textAlign: 'left',
-  color: theme.palette.text.secondary,
-}))
+import Box from '@mui/material/Box'
 
 export default function PokeCard({ pokemon }) {
   const pokeName = { ...pokemon.name }
@@ -19,38 +9,37 @@ export default function PokeCard({ pokemon }) {
   const { HP, Attack, Defense, Speed } = { ...pokemon.base }
 
   return (
-    <Item>
-      {types.map((t) => {
-        return <span key={t}>{t} </span>
-      })}
+    <Card sx={{ textAlign: 'left' }}>
+      <CardContent>
+        <Typography variant="h4" sx={{ my: 2, textAlign: 'left' }}>
+          {pokeName.english}
+        </Typography>
 
-      <Typography variant="h6" sx={{ my: 1 }}>
-        {pokeName.english}
-      </Typography>
+        <Typography variant="subtitle2"> 🆔 ID: {pokemon.id} </Typography>
+        <Typography variant="subtitle2"> 💪 HP: {HP} </Typography>
+        <Typography variant="subtitle2"> 🔪 Attack: {Attack} </Typography>
+        <Typography variant="subtitle2"> 🛡️ Defense: {Defense} </Typography>
+        <Typography variant="subtitle2"> 🏎️ Speed: {Speed} </Typography>
 
-      <Typography variant="body2">{HP}</Typography>
-    </Item>
+        <Box sx={{ marginTop: 4 }}>
+          {types.map((t) => {
+            return (
+              <Typography
+                variant="subtitle2"
+                component="span"
+                key={t}
+                sx={{
+                  backgroundColor: '#b2ebf2',
+                  padding: 0.5,
+                  marginX: 0.5,
+                }}
+              >
+                {t}{' '}
+              </Typography>
+            )
+          })}
+        </Box>
+      </CardContent>
+    </Card>
   )
 }
-
-//   return (
-//     <Card>
-//       <CardContent>
-//         <Typography variant="h5" component="div">
-//           {pokeName.english}
-//         </Typography>
-
-//         {/* <h1>{names.english}</h1> */}
-//         {types.map((t) => {
-//           return (
-//             <Button key={t} label={t}>
-//               {t}{' '}
-//             </Button>
-//           )
-//         })}
-
-//         <p>{Speed}</p>
-//       </CardContent>
-//     </Card>
-//   )
-// }
