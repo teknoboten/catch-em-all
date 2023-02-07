@@ -21,8 +21,8 @@ export default function Picker({ types }) {
   }
 
   return (
-    <Box align="center" sx={{ width: '80vw', mx: 'auto' }}>
-      <FormControl sx={{ width: '50vw' }}>
+    <Box>
+      <FormControl fullWidth>
         <Select value={picked} onChange={handleChange}>
           {types.map((p) => (
             <MenuItem key={p} value={p}>

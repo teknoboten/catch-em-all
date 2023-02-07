@@ -1,7 +1,14 @@
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 import Typography from '@mui/material/Typography'
+import CardMedia from '@mui/material/CardMedia'
 import Box from '@mui/material/Box'
+
+const getThumbs = (id) => {
+  return id < 100
+    ? `http://localhost:9000/images/0${id}.png`
+    : `http://localhost:9000/images/${id}.png`
+}
 
 export default function PokeCard({ pokemon }) {
   const pokeName = { ...pokemon.name }
@@ -9,9 +16,17 @@ export default function PokeCard({ pokemon }) {
   const { HP, Attack, Defense, Speed } = { ...pokemon.base }
 
   return (
-    <Card sx={{ textAlign: 'left' }}>
+    <Card elevation={2} sx={{ textAlign: 'left', padding: 1.5 }}>
       <CardContent>
-        <Typography variant="h4" sx={{ my: 2, textAlign: 'left' }}>
+        <CardMedia
+          component="img"
+          // image={`http://localhost:9000/images/0${pokemon.id}.png`}
+          image={getThumbs(pokemon.id)}
+          alt={pokeName.english}
+          sx={{ width: '60%', mx: 'auto' }}
+        />
+
+        <Typography variant="h4" sx={{ mb: 2, mt: 4, textAlign: 'left' }}>
           {pokeName.english}
         </Typography>
 
