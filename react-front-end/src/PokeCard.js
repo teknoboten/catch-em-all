@@ -23,32 +23,36 @@ export default function PokeCard({ pokemon }) {
   }
 
   return (
-    <Card elevation={2}>
+    <Card elevation={2} onClick={toggleExpanded}>
       <CardHeader title={pokeName.id} />
 
       <CardContent
-        sx={{ display: 'flex', alignItems: 'center', bgcolor: 'yellow' }}
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
       >
-        <Typography variant="h4">{pokeName.english}</Typography>
         <CardMedia
           component="img"
           image={getThumbs(pokemon.id)}
-          sx={{ width: !expanded ? '50%' : '90%' }}
+          sx={{ width: !expanded ? '40%' : '90%' }}
           alt={pokeName.english}
         />
-
-        <Button size="small" variant="outline" onClick={toggleExpanded}>
-          {!expanded ? <ExpandLess /> : <ExpandMore />}
-        </Button>
+        <Typography variant={expanded ? 'h3' : 'h4'} sx={{ my: 1 }}>
+          {pokeName.english}
+        </Typography>
 
         <Collapse in={expanded}>
-          <Typography variant="subtitle2"> 🆔 ID: {pokemon.id} </Typography>
-          <Typography variant="subtitle2"> 💪 HP: {HP} </Typography>
-          <Typography variant="subtitle2"> 🔪 Attack: {Attack} </Typography>
-          <Typography variant="subtitle2"> 🛡️ Defense: {Defense} </Typography>
-          <Typography variant="subtitle2"> 🏎️ Speed: {Speed} </Typography>
+          <Box sx={{ my: 3 }}>
+            <Typography variant="subtitle2"> 🆔 ID: {pokemon.id} </Typography>
+            <Typography variant="subtitle2"> 💪 HP: {HP} </Typography>
+            <Typography variant="subtitle2"> 🔪 Attack: {Attack} </Typography>
+            <Typography variant="subtitle2"> 🛡️ Defense: {Defense} </Typography>
+            <Typography variant="subtitle2"> 🏎️ Speed: {Speed} </Typography>
+          </Box>
 
-          <Box sx={{ marginTop: 4 }}>
+          <Box>
             {types.map((t) => {
               return (
                 <Typography
