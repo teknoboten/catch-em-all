@@ -15,3 +15,5 @@ export default function PokeDex({ pokemon }) {
     </Grid>
   )
 }
+
+// sx={{ width: !expanded ? '40%' : '90%', mx: 'auto' }}
