@@ -6,10 +6,8 @@ import CardHeader from '@mui/material/CardHeader'
 import Typography from '@mui/material/Typography'
 import CardMedia from '@mui/material/CardMedia'
 import Box from '@mui/material/Box'
-import Button from '@mui/material/Button'
 import Collapse from '@mui/material/Collapse'
-import { ExpandMore, ExpandLess } from '@styled-icons/material'
-import Grow from '@mui/material/Grow'
+import Button from '@mui/material/Button'
 
 export default function PokeCard({ pokemon }) {
   const [expanded, setExpanded] = useState(false)
@@ -23,7 +21,15 @@ export default function PokeCard({ pokemon }) {
   }
 
   return (
-    <Card elevation={2} onClick={toggleExpanded}>
+    <Card
+      elevation={2}
+      onClick={toggleExpanded}
+      sx={{
+        '&:hover': {
+          border: '1px inset rgba(200, 120, 123, 0.1)',
+        },
+      }}
+    >
       <CardHeader title={pokeName.id} />
 
       <CardContent
@@ -39,17 +45,17 @@ export default function PokeCard({ pokemon }) {
           sx={{ width: !expanded ? '40%' : '90%' }}
           alt={pokeName.english}
         />
-        <Typography variant={expanded ? 'h3' : 'h4'} sx={{ my: 1 }}>
+        <Typography variant={expanded ? 'h3' : 'h4'} sx={{ mb: 1 }}>
           {pokeName.english}
         </Typography>
 
         <Collapse in={expanded}>
-          <Box sx={{ my: 3 }}>
-            <Typography variant="subtitle2"> 🆔 ID: {pokemon.id} </Typography>
-            <Typography variant="subtitle2"> 💪 HP: {HP} </Typography>
-            <Typography variant="subtitle2"> 🔪 Attack: {Attack} </Typography>
-            <Typography variant="subtitle2"> 🛡️ Defense: {Defense} </Typography>
-            <Typography variant="subtitle2"> 🏎️ Speed: {Speed} </Typography>
+          <Box sx={{ my: 3, display: 'flex' }}>
+            <Typography variant="subtitle2"> 🆔 {pokemon.id} </Typography>
+            <Typography variant="subtitle2"> 💪 {HP} </Typography>
+            <Typography variant="subtitle2"> 🔪 {Attack} </Typography>
+            <Typography variant="subtitle2"> 🛡️ {Defense} </Typography>
+            <Typography variant="subtitle2"> 🏎️ {Speed} </Typography>
           </Box>
 
           <Box>
@@ -71,21 +77,14 @@ export default function PokeCard({ pokemon }) {
             })}
           </Box>
         </Collapse>
+        <Button variant="text" size="small" sx={{ mb: 0 }}>
+          {!expanded ? (
+            <span class="material-icons">expand_more</span>
+          ) : (
+            <span class="material-icons">expand_less</span>
+          )}
+        </Button>
       </CardContent>
     </Card>
   )
-}
-
-{
-  /* <Grow
-in={expanded}
-style={{ transformOrigin: '0 0 0' }}
-{...(expanded ? { timeout: 1000 } : {})}
->
-<CardMedia
-  component="img"
-  image={getThumbs(pokemon.id)}
-  alt={pokeName.english}
-/>
-</Grow> */
 }

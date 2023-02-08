@@ -10,4 +10,30 @@ const getThumbs = (id) => {
   }
 }
 
-module.exports = { getThumbs }
+const types = [
+  'Grass',
+  'Fire',
+  'Water',
+  'Bug',
+  'Normal',
+  'Poison',
+  'Electric',
+  'Ground',
+  'Fairy',
+  'Fighting',
+  'Psychic',
+  'Rock',
+  'Ghost',
+  'Ice',
+  'Dragon',
+  'Dark',
+  'Steel',
+  'Flying',
+]
+
+const getColor = (type) => {
+  console.log('new type is:', type)
+  return types[0]
+}
+
+module.exports = { getThumbs, getColor }
