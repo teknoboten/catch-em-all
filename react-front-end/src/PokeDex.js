@@ -1,8 +1,8 @@
 import Grid from '@mui/material/Grid'
-
 import PokeCard from './PokeCard'
+// import { setColorByType } from './helpers'
 
-export default function PokeDex({ pokemon }) {
+export default function PokeDex({ pokemon, type }) {
   return (
     <Grid container spacing={4} sx={{ marginTop: '5vh' }}>
       {pokemon.map((p, index) => {
@@ -15,5 +15,3 @@ export default function PokeDex({ pokemon }) {
     </Grid>
   )
 }
-
-// sx={{ width: !expanded ? '40%' : '90%', mx: 'auto' }}

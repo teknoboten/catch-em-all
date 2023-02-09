@@ -33,7 +33,7 @@ export default function Picker({ types }) {
         </Select>
       </FormControl>
 
-      {picked && <PokeDex pokemon={pokemon} />}
+      {picked && <PokeDex pokemon={pokemon} type={picked} />}
     </Box>
   )
 }
