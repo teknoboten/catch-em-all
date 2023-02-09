@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { getThumbs } from './helpers.js'
+import { getThumbs, setColorByType } from './helpers.js'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 import CardHeader from '@mui/material/CardHeader'
@@ -9,7 +9,7 @@ import Box from '@mui/material/Box'
 import Collapse from '@mui/material/Collapse'
 import Button from '@mui/material/Button'
 
-export default function PokeCard({ pokemon }) {
+export default function PokeCard({ pokemon, color }) {
   const [expanded, setExpanded] = useState(false)
 
   const pokeName = { ...pokemon.name }
@@ -22,11 +22,11 @@ export default function PokeCard({ pokemon }) {
 
   return (
     <Card
-      elevation={2}
+      elevation={1}
       onClick={toggleExpanded}
       sx={{
         '&:hover': {
-          border: '1px inset rgba(200, 120, 123, 0.1)',
+          boxShadow: 9,
         },
       }}
     >
@@ -37,6 +37,7 @@ export default function PokeCard({ pokemon }) {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
+          justifyContent: 'space-between',
         }}
       >
         <CardMedia
@@ -45,30 +46,55 @@ export default function PokeCard({ pokemon }) {
           sx={{ width: !expanded ? '40%' : '90%' }}
           alt={pokeName.english}
         />
-        <Typography variant={expanded ? 'h3' : 'h4'} sx={{ mb: 1 }}>
+        <Typography variant={expanded ? 'h4' : 'h5'} sx={{ my: 2 }}>
           {pokeName.english}
         </Typography>
 
-        <Collapse in={expanded}>
-          <Box sx={{ my: 3, display: 'flex' }}>
-            <Typography variant="subtitle2"> 🆔 {pokemon.id} </Typography>
-            <Typography variant="subtitle2"> 💪 {HP} </Typography>
-            <Typography variant="subtitle2"> 🔪 {Attack} </Typography>
-            <Typography variant="subtitle2"> 🛡️ {Defense} </Typography>
-            <Typography variant="subtitle2"> 🏎️ {Speed} </Typography>
-          </Box>
+        <Button
+          variant="text"
+          sx={{
+            mb: 0,
+            color: 'rgba(238, 238, 238, 0)',
+            '&:hover': {
+              color: 'rgba(238, 238, 238, 1)',
+            },
+          }}
+        >
+          {!expanded ? (
+            <span className="material-icons">expand_more</span>
+          ) : (
+            <span className="material-icons">expand_less</span>
+          )}
+        </Button>
 
+        <Collapse in={expanded}>
+          <Box sx={{ my: 3, textAlign: 'left' }}>
+            <Typography variant="h6"> 💪 {HP} </Typography>
+            <Typography variant="h6"> 🔪 {Attack} </Typography>
+            <Typography variant="h6"> 🛡️ {Defense} </Typography>
+            <Typography variant="h6"> 🏎️ {Speed} </Typography>
+          </Box>
+        </Collapse>
+
+        <Box
+          sx={{
+            display: 'flex',
+            width: '100%',
+            justifyContent: 'space-between',
+            mt: 2,
+          }}
+        >
           <Box>
             {types.map((t) => {
               return (
                 <Typography
-                  variant="subtitle2"
+                  variant="caption"
                   component="span"
                   key={t}
                   sx={{
-                    backgroundColor: '#b2ebf2',
+                    backgroundColor: setColorByType(t),
                     padding: 0.5,
-                    marginX: 0.5,
+                    marginRight: 0.5,
                   }}
                 >
                   {t}{' '}
@@ -76,14 +102,22 @@ export default function PokeCard({ pokemon }) {
               )
             })}
           </Box>
-        </Collapse>
-        <Button variant="text" size="small" sx={{ mb: 0 }}>
-          {!expanded ? (
-            <span class="material-icons">expand_more</span>
-          ) : (
-            <span class="material-icons">expand_less</span>
-          )}
-        </Button>
+
+          <Typography
+            variant="caption"
+            component="span"
+            sx={{
+              textAlign: 'center',
+              height: '25px',
+              width: '25px',
+              borderRadius: '50%',
+              color: 'white',
+              backgroundColor: '#424242',
+            }}
+          >
+            {pokemon.id}
+          </Typography>
+        </Box>
       </CardContent>
     </Card>
   )

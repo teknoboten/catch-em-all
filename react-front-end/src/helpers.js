@@ -10,30 +10,29 @@ const getThumbs = (id) => {
   }
 }
 
-const types = [
-  'Grass',
-  'Fire',
-  'Water',
-  'Bug',
-  'Normal',
-  'Poison',
-  'Electric',
-  'Ground',
-  'Fairy',
-  'Fighting',
-  'Psychic',
-  'Rock',
-  'Ghost',
-  'Ice',
-  'Dragon',
-  'Dark',
-  'Steel',
-  'Flying',
-]
-
-const getColor = (type) => {
-  console.log('new type is:', type)
-  return types[0]
+const colors = {
+  Grass: '#4caf50',
+  Fire: '#ff5722',
+  Water: '#0277bd',
+  Bug: '#cddc39',
+  Normal: '#0d47a1',
+  Poison: '#76ff03',
+  Electric: '#ffff00',
+  Ground: '#8d6e63',
+  Fairy: '#f48fb1',
+  Fighting: '#d50000',
+  Psychic: '#512da8',
+  Rock: '#616161',
+  Ghost: '#bdbdbd',
+  Ice: '#bbdefb',
+  Dragon: '#7e57c2',
+  Dark: '#1a237e',
+  Steel: '#607d8b',
+  Flying: '#00e5ff',
 }
 
-module.exports = { getThumbs, getColor }
+const setColorByType = (t) => {
+  return colors[t]
+}
+
+module.exports = { getThumbs, setColorByType }
