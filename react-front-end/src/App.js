@@ -3,7 +3,7 @@ import axios from 'axios'
 import GlobalStyles from '@mui/material/GlobalStyles'
 import Container from '@mui/material/Container'
 import Typography from '@mui/material/Typography'
-import Picker from './Picker'
+import PokeDex from './PokeDex'
 
 function App() {
   const [types, setTypes] = useState([])
@@ -18,7 +18,7 @@ function App() {
       <Typography variant="h1" align="center" sx={{ my: 5 }}>
         Catch Em All!
       </Typography>
-      <Picker types={types} />
+      <PokeDex types={types} />
     </Container>
   )
 }

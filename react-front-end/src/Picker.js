@@ -1,20 +1,20 @@
 import { useState, useEffect } from 'react'
-import axios from 'axios'
+// import axios from 'axios'
 import Box from '@mui/material/Box'
 import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
 import Select from '@mui/material/Select'
 import PokeDex from './PokeDex'
 
-export default function Picker({ types }) {
-  const [picked, setPicked] = useState('')
-  const [pokemon, setPokemon] = useState([''])
+export default function Picker({ types, setPicked, picked }) {
+  // const [picked, setPicked] = useState('')
+  // const [pokemon, setPokemon] = useState([''])
 
-  useEffect(() => {
-    axios
-      .get(`http://localhost:9000/api?type=${picked}`)
-      .then((res) => setPokemon(res.data))
-  }, [picked])
+  // useEffect(() => {
+  //   axios
+  //     .get(`http://localhost:9000/api?type=${picked}`)
+  //     .then((res) => setPokemon(res.data))
+  // }, [picked])
 
   const handleChange = (event) => {
     setPicked(event.target.value)
@@ -33,7 +33,7 @@ export default function Picker({ types }) {
         </Select>
       </FormControl>
 
-      {picked && <PokeDex pokemon={pokemon} type={picked} />}
+      {picked && <PokeDex type={picked} />}
     </Box>
   )
 }

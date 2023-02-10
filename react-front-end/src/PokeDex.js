@@ -1,17 +1,54 @@
+import { useEffect, useState } from 'react'
+import axios from 'axios'
 import Grid from '@mui/material/Grid'
+import Box from '@mui/material/Box'
+import MenuItem from '@mui/material/MenuItem'
+import FormControl from '@mui/material/FormControl'
+import Select from '@mui/material/Select'
 import PokeCard from './PokeCard'
-// import { setColorByType } from './helpers'
 
-export default function PokeDex({ pokemon, type }) {
+export default function PokeDex({ types }) {
+  const [picked, setPicked] = useState('')
+  const [pokemon, setPokemon] = useState([''])
+  const [reset, setReset] = useState(false)
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:9000/api?type=${picked}`)
+      .then((res) => setPokemon(res.data))
+      .then(() => setReset(true))
+  }, [picked])
+
+  const handleChange = (event) => {
+    setPicked(event.target.value)
+  }
+
   return (
-    <Grid container spacing={4} sx={{ marginTop: '5vh' }}>
-      {pokemon.map((p, index) => {
-        return (
-          <Grid item sm={12} md={4} lg={3} key={index}>
-            <PokeCard pokemon={p} />
-          </Grid>
-        )
-      })}
-    </Grid>
+    <>
+      <Box>
+        <FormControl fullWidth>
+          <Select value={picked} onChange={handleChange}>
+            {types.map((p) => (
+              <MenuItem key={p} value={p}>
+                {' '}
+                {p}{' '}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+      </Box>
+
+      {picked && (
+        <Grid container spacing={4} sx={{ marginTop: '5vh' }}>
+          {pokemon.map((p, index) => {
+            return (
+              <Grid item sm={12} md={4} lg={3} key={index}>
+                <PokeCard pokemon={p} reset={reset} setReset={setReset} />
+              </Grid>
+            )
+          })}
+        </Grid>
+      )}
+    </>
   )
 }

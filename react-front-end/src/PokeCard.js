@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { getThumbs, setColorByType } from './helpers.js'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
@@ -9,15 +9,19 @@ import Box from '@mui/material/Box'
 import Collapse from '@mui/material/Collapse'
 import Button from '@mui/material/Button'
 
-export default function PokeCard({ pokemon, color }) {
+export default function PokeCard({ pokemon, reset, setReset }) {
   const [expanded, setExpanded] = useState(false)
-
   const pokeName = { ...pokemon.name }
   const types = pokemon.type
   const { HP, Attack, Defense, Speed } = { ...pokemon.base }
 
+  useEffect(() => {
+    setExpanded(false)
+  }, [reset])
+
   const toggleExpanded = () => {
     setExpanded(!expanded)
+    setReset(false)
   }
 
   return (
