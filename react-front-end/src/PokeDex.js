@@ -16,11 +16,11 @@ export default function PokeDex({ types }) {
     axios
       .get(`http://localhost:9000/api?type=${picked}`)
       .then((res) => setPokemon(res.data))
-      .then(() => setReset(true))
   }, [picked])
 
   const handleChange = (event) => {
     setPicked(event.target.value)
+    setReset(true)
   }
 
   return (
