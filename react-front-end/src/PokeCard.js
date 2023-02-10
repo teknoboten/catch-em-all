@@ -9,7 +9,7 @@ import Box from '@mui/material/Box'
 import Collapse from '@mui/material/Collapse'
 import Button from '@mui/material/Button'
 
-export default function PokeCard({ pokemon, reset, setReset }) {
+export default function PokeCard({ pokemon }) {
   const [expanded, setExpanded] = useState(false)
   const pokeName = { ...pokemon.name }
   const types = pokemon.type
@@ -17,11 +17,10 @@ export default function PokeCard({ pokemon, reset, setReset }) {
 
   useEffect(() => {
     setExpanded(false)
-  }, [reset])
+  }, [pokemon])
 
   const toggleExpanded = () => {
     setExpanded(!expanded)
-    setReset(false)
   }
 
   return (
@@ -31,6 +30,7 @@ export default function PokeCard({ pokemon, reset, setReset }) {
       sx={{
         '&:hover': {
           boxShadow: 9,
+          textDecoration: 'underline',
         },
       }}
     >
@@ -53,7 +53,7 @@ export default function PokeCard({ pokemon, reset, setReset }) {
         <Typography variant={expanded ? 'h4' : 'h5'} sx={{ my: 2 }}>
           {pokeName.english}
         </Typography>
-
+        {/* 
         <Button
           variant="text"
           sx={{
@@ -69,7 +69,7 @@ export default function PokeCard({ pokemon, reset, setReset }) {
           ) : (
             <span className="material-icons">expand_less</span>
           )}
-        </Button>
+        </Button> */}
 
         <Collapse in={expanded}>
           <Box sx={{ my: 3, textAlign: 'left' }}>
