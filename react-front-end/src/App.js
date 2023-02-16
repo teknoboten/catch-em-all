@@ -9,7 +9,7 @@ function App() {
   const [types, setTypes] = useState([])
 
   useEffect(() => {
-    axios.get('http://localhost:9000').then((res) => setTypes(res.data))
+    axios.get('http://localhost:8080').then((res) => setTypes(res.data))
   }, [])
 
   return (
