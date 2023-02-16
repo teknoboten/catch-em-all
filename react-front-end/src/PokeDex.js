@@ -14,7 +14,7 @@ export default function PokeDex({ types }) {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:9000/api?type=${picked}`)
+      .get(`http://localhost:8080/api?type=${picked}`)
       .then((res) => setPokemon(res.data))
   }, [picked])
 

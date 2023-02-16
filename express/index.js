@@ -3,6 +3,7 @@ const app = express()
 const cors = require('cors')
 
 const { getTypes, getPokemonByType } = require('./helpers')
+const PORT = 8080
 
 app.use(cors())
 app.use(express.static('public'))
@@ -17,6 +18,6 @@ app.get('/', (req, res) => {
   res.json(getTypes())
 })
 
-app.listen(9000, () => {
+app.listen(PORT, () => {
   console.log(`Let's catch some Pokemon! 😸 `)
 })
