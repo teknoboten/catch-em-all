@@ -111,19 +111,4 @@ export default function PokeCard({ pokemon }) {
   )
 }
 
-// ;<Button
-//   variant="text"
-//   sx={{
-//     mb: 0,
-//     color: 'rgba(238, 238, 238, 0)',
-//     '&:hover': {
-//       color: 'rgba(238, 238, 238, 1)',
-//     },
-//   }}
-// >
-//   {!expanded ? (
-//     <span className="material-icons">expand_more</span>
-//   ) : (
-//     <span className="material-icons">expand_less</span>
-//   )}
-// </Button>
+

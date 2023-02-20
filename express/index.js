@@ -3,7 +3,7 @@ const app = express()
 const cors = require('cors')
 
 const { getTypes, getPokemonByType } = require('./helpers')
-const PORT = 8080
+const PORT = 9000
 
 app.use(cors())
 app.use(express.static('public'))
