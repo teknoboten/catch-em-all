@@ -14,8 +14,8 @@ RUN npm install
 # Bundle source code inside the Docker image
 COPY . .
 
-# Tell Docker Daemon to map to 8080 
-EXPOSE 8080
+# Tell Docker Daemon to map to 9000 
+EXPOSE 9000
 
 # Define command to run the app
 CMD [ "node", "index.js" ]
