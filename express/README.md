@@ -31,7 +31,7 @@ I finally have a laptop capable of running Docker (🎉!) so have been experimen
 
 ### 4. run it!
 
-        docker run -p 127.0.0.1:9000:8080 -d express-pokedex
+        docker run -p 127.0.0.1:9000:9000 -d express-pokedex
 
 ### 5. test it:
 
