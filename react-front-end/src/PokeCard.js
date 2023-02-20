@@ -2,12 +2,10 @@ import { useEffect, useState } from 'react'
 import { getThumbs, setColorByType } from './helpers.js'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
-import CardHeader from '@mui/material/CardHeader'
 import Typography from '@mui/material/Typography'
 import CardMedia from '@mui/material/CardMedia'
 import Box from '@mui/material/Box'
 import Collapse from '@mui/material/Collapse'
-import Button from '@mui/material/Button'
 
 export default function PokeCard({ pokemon }) {
   const [expanded, setExpanded] = useState(false)
@@ -30,54 +28,40 @@ export default function PokeCard({ pokemon }) {
       sx={{
         '&:hover': {
           boxShadow: 9,
-          textDecoration: 'underline',
+          border: '6px inset #757575',
         },
+        border: '6px inset #bdbdbd',
+        backgroundColor: '#fafafa',
+
       }}
     >
-      <CardHeader title={pokeName.id} />
-
-      <CardContent
+      <Typography
+        variant="h5"
         sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'space-between',
+          px: 1,
+     
         }}
       >
+        {pokeName.english}
+      </Typography>
+
+      <CardContent
+
+      >
+        <Box sx={{ backgroundColor: 'white' }}>
         <CardMedia
           component="img"
           image={getThumbs(pokemon.id)}
-          sx={{ width: !expanded ? '40%' : '90%' }}
+          sx={{ width: !expanded ? '40%' : '90%', mx: 'auto', py: 2 }}
           alt={pokeName.english}
         />
-        <Typography variant={expanded ? 'h4' : 'h5'} sx={{ my: 2 }}>
-          {pokeName.english}
-        </Typography>
-        {/* 
-        <Button
-          variant="text"
-          sx={{
-            mb: 0,
-            color: 'rgba(238, 238, 238, 0)',
-            '&:hover': {
-              color: 'rgba(238, 238, 238, 1)',
-            },
-          }}
-        >
-          {!expanded ? (
-            <span className="material-icons">expand_more</span>
-          ) : (
-            <span className="material-icons">expand_less</span>
-          )}
-        </Button> */}
+        </Box>
 
         <Collapse in={expanded}>
-          <Box sx={{ my: 3, textAlign: 'left' }}>
-            <Typography variant="h6"> 💪 {HP} </Typography>
-            <Typography variant="h6"> 🔪 {Attack} </Typography>
-            <Typography variant="h6"> 🛡️ {Defense} </Typography>
-            <Typography variant="h6"> 🏎️ {Speed} </Typography>
-          </Box>
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 3 }}> <span>Hit points</span> <span>{HP}</span></Box>
+        <Box sx={{ display: 'flex', justifyContent: 'space-between' }}> <span>Attack</span> <span>{Attack}</span></Box>
+        <Box sx={{ display: 'flex', justifyContent: 'space-between' }}> <span>Defense</span> <span>{Defense}</span></Box>
+        <Box sx={{ display: 'flex', justifyContent: 'space-between' }}> <span>Speed</span> <span>{Speed}</span></Box>
         </Collapse>
 
         <Box
@@ -126,3 +110,20 @@ export default function PokeCard({ pokemon }) {
     </Card>
   )
 }
+
+// ;<Button
+//   variant="text"
+//   sx={{
+//     mb: 0,
+//     color: 'rgba(238, 238, 238, 0)',
+//     '&:hover': {
+//       color: 'rgba(238, 238, 238, 1)',
+//     },
+//   }}
+// >
+//   {!expanded ? (
+//     <span className="material-icons">expand_more</span>
+//   ) : (
+//     <span className="material-icons">expand_less</span>
+//   )}
+// </Button>

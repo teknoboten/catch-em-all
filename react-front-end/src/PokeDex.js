@@ -42,7 +42,7 @@ export default function PokeDex({ types }) {
         <Grid container spacing={4} sx={{ marginTop: '5vh' }}>
           {pokemon.map((p, index) => {
             return (
-              <Grid item sm={12} md={4} lg={3} key={index}>
+              <Grid item xs={12} md={4} lg={3} key={index}>
                 <PokeCard pokemon={p} reset={reset} setReset={setReset} />
               </Grid>
             )
