@@ -36,5 +36,5 @@ Display a drop-list component for the user to select Pokemon “types”.
 
 - add pagination
 - add transition animations
-- improve expanded card formatting???
-- add reset functionality to cards (when a new type is selected, expanded should reset to false)
+- improve expanded card formatting ✅
+- add reset functionality to cards (when a new type is selected, expanded should reset to false) ✅
